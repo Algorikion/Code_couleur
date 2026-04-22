@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Code couleur</title>
+  <link rel="icon" type="image/png" href="Images/Logo_rond.png" />
+
+<style>
+
+#container {
+	display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 150px 300px 300px;
+  min-height: 750px;
+}
+
+#container > div:nth-child(1) {
+  background-color: black;
+}
+   
+#container > div:nth-child(2) {
+  background-color: lightcoral;
+}
+
+#container > div:nth-child(3) {
+  background-color: aqua;
+}
+
+#container > div:nth-child(4) {
+  background-color: chocolate;
+  display: flex;
+  flex-direction: column;
+}
+
+#container > div:nth-child(5) {
+  background-color: rgb(0, 255, 21);
+}
+
+#container > div:nth-child(6) {
+  background-color: black;
+}
+
+#container > div:nth-child(7) {
+  background-color: rgb(0, 255, 21);
+}
+
+#titre_bloc {
+  grid-column: 1 / 4; 
+  grid-row: 1 / 2;
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#Titre {
+  font-size: 100px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: linear-gradient(90deg, #ff0000FF, #2f00ffFF);
+  -webkit-background-clip: text; /* Chrome, Safari */
+  -webkit-text-fill-color: transparent; /* Chrome, Safari */
+  background-clip: text; /* Firefox */
+  color: transparent; /* Firefox */
+  white-space: nowrap; /* éviter le retour à la ligne */
+}
+
+.Logo_sans_fond {
+  height: 100px;
+  width: auto;
+}
+
+#rangeHSV {
+  grid-column: 1 / 2; 
+  grid-row: 2 / 3;
+  background-color: #001affFF;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+}
+
+#hsvLogo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+#rangeRGB {
+  grid-column: 2 / 3; 
+  grid-row: 2 / 3; 
+  background-color: #125945;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+}
+
+#rgbLogo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+#rangeAlpha_Hex {
+  grid-column: 3 / 4; 
+  grid-row: 2 / 3; 
+}
+
+#rangeAlpha {
+  flex: 1;
+  background-color: rgb(0, 111, 111);
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+}
+
+#rangeHex {
+  flex: 1;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+}
+
+#Hex {
+  color:black;
+  width: 160px;
+  height: 40px;
+  resize: none;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+#couleur_bloc {
+  grid-column: 2 / 3; 
+  grid-row: 3 / 4; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#apercu_couleur{
+  gap: 20px;
+  height:200px;
+  width:200px;
+  border-radius: 8px;
+  border: 5px solid #ffffff;
+}
+
+.Code {
+  color:#007BFF
+}
+
+.Bouton_copier {
+  display: inline-flex;           
+  justify-content: center;      
+  align-items: center;          
+  padding: 10px 20px;           
+  font-size: 16px;              
+  cursor: pointer;              
+  border: 2px solid #007BFF;    
+  background: linear-gradient(90deg, #2f00ffFF, #ff0000FF);
+  -webkit-background-clip: text; /* pour Chrome, Safari */
+  -webkit-text-fill-color: transparent; /* pour Chrome, Safari */
+  background-clip: text; /* pour Firefox */
+  color: transparent; /* pour Firefox */                
+  border-radius: 5px;         
+}
+
+#sans_A_bloc {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+#avec_A_bloc {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+	<div id="titre_bloc">
+	
+		<img src="Images/Logo_sans_fond.png" class="Logo_sans_fond">
+		<div id="Titre">Choisissez votre couleur</div>
+		<img src="Images/Logo_sans_fond.png" class="Logo_sans_fond">
+        <a href="README.md" target="_blank">Voir le README</a>
+
+		
+	</div>
+
+	   
+	<div id="rangeHSV">
+
+		<img src="Images/hsv.png" id="hsvLogo">
+		<div id="teinte">Teinte (Hue) : 0°</div>
+		<input type="range" class="range" id="Teinte" min="0" max="360" value="0"/>
+		<div id="saturation">Saturation : 100%</div>
+		<input type="range" class="range" id="Saturation" min="0" max="100" value="100"/>
+		<div id="value">Valeur : 100%</div>
+		<input type="range" class="range" id="Value" min="0" max="100" value="100"/>
+
+	</div>
+
+
+	<div id="rangeRGB">
+
+		<img src="Images/rgb.png" id="rgbLogo">
+    <div id="rouge">Rouge : 255</div>
+		<input type="range" class="range" id="Rouge" min="0" max="255" value="255"/>
+		<div id="vert">Vert : 0</div>
+		<input type="range" class="range" id="Vert" min="0" max="255" value="255"/>
+		<div id="bleu">Bleu : 0</div>
+		<input type="range" class="range" id="Bleu" min="0" max="255" value="255"/>
+
+	</div>
+
+	      
+	<div id="rangeAlpha_Hex">
+
+    <div id="rangeAlpha"> 
+    
+      <div id="alpha">Transparence : 1.00</div>
+      <input type="range" class="range" id="Alpha" min="0" max="1" value="1" step="0.01"/>
+
+    </div>
+    <div id="rangeHex">
+
+      <div id="hex">Code Hexadecimale :</div>
+      <textarea id="Hex" placeholder="#" maxlength="9"></textarea>
+  
+    </div>
+
+  </div> 
+
+  <div id="sans_A_bloc">
+
+    <div id="hex_bloc">
+      <div class="Bouton_copier" id="hex_copier">Copier</div>
+      <div class="Code" id="Code_hex">hvjhv</div>
+    </div>
+    <div id="hsv_bloc">
+      <div class="Bouton_copier" id="hsv_copier">Copier</div>
+      <div class="Code" id="Code_hsv">hvkhkh,</div>
+    </div>
+    <div id="rgb_bloc">
+      <div class="Bouton_copier" id="rgb_copier">Copier</div>
+      <div class="Code" id="Code_rgb">jjhhhvhv</div>
+    </div>
+
+  </div>
+  
+  <div id="couleur_bloc">  
+  
+    <div id="apercu_couleur"></div>
+		
+  </div>
+
+  <div id="avec_A_bloc">
+
+    <div id="hexa_bloc">
+      <div class="Bouton_copier" id="hexa_copier">Copier</div>
+      <div class="Code" id="Code_hexa">kvc;jvljac</div>
+    </div>
+    <div id="hsva_bloc">
+      <div class="Bouton_copier" id="hsva_copier">Copier</div>
+      <div class="Code" id="Code_hsva">aekjgfgekjagf</div>
+    </div>
+    <div id="rgba_bloc">
+      <div class="Bouton_copier" id="rgba_copier">Copier</div>
+      <div class="Code" id="Code_rgba">iezyfoioizfhiiot</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+  /* récupération des éléments HTML */
+
+  const Teinte = document.getElementById('Teinte')
+  const Saturation = document.getElementById('Saturation')
+  const Value = document.getElementById('Value')
+
+  const teinteLabel = document.getElementById('teinte')
+  const saturationLabel = document.getElementById('saturation')
+  const valueLabel = document.getElementById('value')
+
+  const Rouge = document.getElementById('Rouge')
+  const Vert = document.getElementById('Vert')
+  const Bleu = document.getElementById('Bleu')
+
+  const rougeLabel = document.getElementById('rouge')
+  const vertLabel = document.getElementById('vert')
+  const bleuLabel = document.getElementById('bleu')
+
+  const Alpha = document.getElementById('Alpha')
+  const alphaLabel = document.getElementById('alpha')
+
+  const Hex = document.getElementById('Hex')
+
+  const apercu = document.getElementById('apercu_couleur')
+  
+  const Hex_copier=document.getElementById('hex_copier')
+  const Hexa_copier=document.getElementById('hexa_copier')
+
+  const Hex_code = document.getElementById('Code_hex')
+  const Hexa_code = document.getElementById('Code_hexa')
+
+  const hsv_copier=document.getElementById('hsv_copier')
+  const hsva_copier=document.getElementById('hsva_copier')
+
+  const hsv_code = document.getElementById('Code_hsv')
+  const hsva_code = document.getElementById('Code_hsva')
+
+  const rgb_copier=document.getElementById('rgb_copier')
+  const rgba_copier=document.getElementById('rgba_copier')
+
+  const rgb_code = document.getElementById('Code_rgb')
+  const rgba_code = document.getElementById('Code_rgba')
+
+/* conversion décimal -> hexadécimal */
+function DeciHexa(Deci){
+
+let hex=Deci.toString(16)
+
+if(hex.length===1){
+hex="0"+hex
+}
+
+return hex
+}
+
+
+/* conversion hexadécimal -> décimal */
+function HexaDeci(Hexa){
+
+return parseInt(Hexa,16)
+
+}
+
+
+/* conversion HSV -> RGB */
+function HSVRGB(h,s,v){
+
+h=(h%360)/60
+s=s/100
+v=v/100
+
+const i=Math.floor(h)
+const f=h-i
+const p=v*(1-s)
+const q=v*(1-f*s)
+const t=v*(1-(1-f)*s)
+
+let r,g,b
+
+switch(i%6){
+
+case 0:r=v;g=t;b=p;break
+case 1:r=q;g=v;b=p;break
+case 2:r=p;g=v;b=t;break
+case 3:r=p;g=q;b=v;break
+case 4:r=t;g=p;b=v;break
+case 5:r=v;g=p;b=q;break
+
+}
+
+/* conversion vers valeurs 0-255 */
+return{
+r:Math.round(r*255),
+g:Math.round(g*255),
+b:Math.round(b*255)
+}
+
+}
+
+
+/* conversion RGB -> HSV */
+function RGBHSV(r,g,b){
+
+r/=255
+g/=255
+b/=255
+
+const max=Math.max(r,g,b)
+const min=Math.min(r,g,b)
+const delta=max-min
+
+let h=0
+let s=0
+let v=max
+
+if(delta!==0){
+
+if(max===r){
+h=60*((g-b)/delta%6)
+}
+
+else if(max===g){
+h=60*((b-r)/delta+2)
+}
+
+else{
+h=60*((r-g)/delta+4)
+}
+
+}
+
+if(h<0){
+h+=360
+}
+
+s=max===0?0:delta/max
+
+return{
+h:Math.round(h),
+s:Math.round(s*100),
+v:Math.round(v*100)
+}
+
+}
+
+
+/* conversion RGB -> HEX */
+function RGBHEX(r,g,b){
+
+return "#"+DeciHexa(r)+DeciHexa(g)+DeciHexa(b)
+
+}
+
+
+/* conversion Hex -> RGB */
+function HEXRGB(hex) {
+
+    hex = hex.replace('#', '');
+
+    if (hex.length === 3 || hex.length === 6 || hex.length === 8) {
+
+        if (hex.length < 8) {
+            hex += 'F';
+        }
+
+        var r = parseInt(hex.substring(0, 2), 16);
+        var g = parseInt(hex.substring(2, 4), 16);
+        var b = parseInt(hex.substring(4, 6), 16);
+        var a = parseInt(hex.substring(6, 8), 16) / 255;
+
+        return {
+            r: r,
+            g: g,
+            b: b,
+            a: a
+        };
+    } 
+    else {
+        throw new Error("Format hexadécimal invalide. Utilisez un format avec 3, 6 ou 8 caractères.");
+    }
+}
+
+
+/* ajout de l'alpha au code hex */
+function HEXHEXA(hexCode,Alpha){
+
+const alphaHex=Math.round(Alpha*255)
+.toString(16)
+.padStart(2,'0')
+.toUpperCase()
+
+return hexCode+alphaHex
+
+}
+
+
+/* mises à jour quand HSV change */
+function updateFromHSV(){
+
+const h=parseInt(Teinte.value)
+const s=parseInt(Saturation.value)
+const v=parseInt(Value.value)
+
+teinteLabel.textContent="Teinte (Hue) : "+h+"°"
+saturationLabel.textContent="Saturation : "+s+"%"
+valueLabel.textContent="Valeur : "+v+"%"
+
+const {r,g,b}=HSVRGB(h,s,v)
+
+Rouge.value=r
+Vert.value=g
+Bleu.value=b
+
+rougeLabel.textContent="Rouge : "+r
+vertLabel.textContent="Vert : "+g
+bleuLabel.textContent="Bleu : "+b
+
+apercu.style.backgroundColor=`rgb(${r},${g},${b})`
+
+}
+
+
+/* mises à jour quand RGB change */
+function updateFromRGB(){
+
+const r=parseInt(Rouge.value)
+const g=parseInt(Vert.value)
+const b=parseInt(Bleu.value)
+
+rougeLabel.textContent="Rouge : "+r
+vertLabel.textContent="Vert : "+g
+bleuLabel.textContent="Bleu : "+b
+
+const {h,s,v}=RGBHSV(r,g,b)
+
+Teinte.value=h
+Saturation.value=s
+Value.value=v
+
+teinteLabel.textContent="Teinte (Hue) : "+h+"°"
+saturationLabel.textContent="Saturation : "+s+"%"
+valueLabel.textContent="Valeur : "+v+"%"
+
+apercu.style.backgroundColor=`rgb(${r},${g},${b})`
+
+}
+
+
+/* mises à jour quand Alpha change */
+function updateFromAlpha() {
+  const a = parseFloat(Alpha.value);
+  alphaLabel.textContent = "Transparence : " + a.toFixed(2);
+
+  const r = parseInt(Rouge.value);
+  const g = parseInt(Vert.value);
+  const b = parseInt(Bleu.value);
+
+  apercu.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+
+
+/* mises à jour quand Hex change */
+function updateFromHex(){
+
+    if (!Hex.value.startsWith("#")) {
+        Hex.value = "#" + Hex.value;
+    }
+
+    const hex = Hex.value.trim();
+    if (!hex) return;
+    
+    const {r, g, b, a} = HEXRGB(hex);
+    const {h, s, v} = RGBHSV(r, g, b);
+
+    // Mise à jour des sliders et labels
+    Rouge.value = r;
+    Vert.value = g;
+    Bleu.value = b;
+    Teinte.value = h;
+    Saturation.value = s;
+    Value.value = v;
+    Alpha.value = a;
+
+    rougeLabel.textContent = "Rouge : " + r;
+    vertLabel.textContent = "Vert : " + g;
+    bleuLabel.textContent = "Bleu : " + b;
+    teinteLabel.textContent = "Teinte (Hue) : " + h + "°";
+    saturationLabel.textContent = "Saturation : " + s + "%";
+    valueLabel.textContent = "Valeur : " + v + "%";
+    alphaLabel.textContent = "Transparence : " + a.toFixed(2);
+
+    // Mise à jour de l'aperçu avec transparence
+    apercu.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+    // Mise à jour des codes de couleur (sans alpha)
+    const hexSansAlpha = hex.replace('#', '').substring(0, 6).toUpperCase();
+    Hex_code.textContent = `#${hexSansAlpha}`;
+    hsv_code.textContent = `hsl(${h}, ${s}%, ${v}%)`;
+    rgb_code.textContent = `rgb(${r}, ${g}, ${b})`;
+
+    // Mise à jour des codes avec alpha
+    const hexAlpha = hexSansAlpha + DeciHexa(Math.round(a * 255)).toUpperCase();
+    Hexa_code.textContent = `#${hexAlpha}`;
+    hsva_code.textContent = `hsla(${h}, ${s}%, ${v}%, ${a})`;
+    rgba_code.textContent = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+}
+
+
+/* écoute des sliders */
+
+Rouge.addEventListener('input',updateFromRGB)
+Vert.addEventListener('input',updateFromRGB)
+Bleu.addEventListener('input',updateFromRGB)
+
+Teinte.addEventListener('input',updateFromHSV)
+Saturation.addEventListener('input',updateFromHSV)
+Value.addEventListener('input',updateFromHSV)
+
+Alpha.addEventListener('input',updateFromAlpha)
+
+Hex.addEventListener("input", updateFromHex)
+Hex.addEventListener("keydown", updateFromHex)
+Hex.addEventListener("paste", updateFromHex)
+
+
+/* écoute des boutons copier */
+
+// Fonction pour copier le texte du bouton hex
+document.getElementById('hex_copier').addEventListener('click', () => {
+  navigator.clipboard.writeText(Hex_code.textContent)
+    .then(() => alert("Code Hexadecimal copié !"))
+    .catch(() => alert("Erreur lors de la copie."));
+});
+
+// Fonction pour copier le code HSV
+document.getElementById('hsv_copier').addEventListener('click', () => {
+  navigator.clipboard.writeText(hsv_code.textContent)
+    .then(() => alert("Code HSV copié !"))
+    .catch(() => alert("Erreur lors de la copie."));
+});
+
+// Fonction pour copier le code HSVA
+document.getElementById('hsva_copier').addEventListener('click', () => {
+  navigator.clipboard.writeText(hsva_code.textContent)
+    .then(() => alert("Code HSVA copié !"))
+    .catch(() => alert("Erreur lors de la copie."));
+});
+
+// Fonction pour copier le code RGB
+document.getElementById('rgb_copier').addEventListener('click', () => {
+  navigator.clipboard.writeText(rgb_code.textContent)
+    .then(() => alert("Code RGB copié !"))
+    .catch(() => alert("Erreur lors de la copie."));
+});
+
+// Fonction pour copier le code RGBA
+document.getElementById('rgba_copier').addEventListener('click', () => {
+  navigator.clipboard.writeText(rgba_code.textContent)
+    .then(() => alert("Code RGBA copié !"))
+    .catch(() => alert("Erreur lors de la copie."));
+});
+
+// Fonction pour copier le code Hexa avec alpha (si besoin)
+document.getElementById('hexa_copier').addEventListener('click', () => {
+  navigator.clipboard.writeText(Hexa_code.textContent)
+    .then(() => alert("Code Hexa avec alpha copié !"))
+    .catch(() => alert("Erreur lors de la copie."));
+});
+
+/* remises à 0 */
+document.addEventListener('DOMContentLoaded', function() {
+
+  Teinte.value = 0;
+  Saturation.value = 100;
+  Value.value = 100;
+  Rouge.value = 255;
+  Vert.value = 0;
+  Bleu.value = 0;
+  Alpha.value = 1;
+
+  Hex.value = "";
+
+  Hex_code.textContent  = "#ff0000";
+  Hexa_code.textContent = "#ff0000FF";
+  rgb_code.textContent  = "rgb(255, 0, 0)";
+  rgba_code.textContent = "rgba(255, 0, 0, 1)";
+  hsv_code.textContent  = "hsv(0, 100, 100)";
+  hsva_code.textContent = "hsva(0, 100, 100, 1)";
+
+  apercu.style.backgroundColor = '#ff0000';
+
+});
+
+
+</script>
+
+</body>
+</html>
